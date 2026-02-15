@@ -110,7 +110,7 @@ If Quarto is not in your system PATH, you'll need to specify its location:
 
 **Method 1: Context Menu (Recommended)**
 
-1. In VS Code Explorer, right-click any `.ipynb` file
+1. In VS Code, right-click inside any cell of an open `.ipynb` file
 2. Select **"Convert Jupyter Notebook to DOCX"**
 3. Choose whether to re-execute the notebook (if prompted)
 4. Wait for the export to complete
