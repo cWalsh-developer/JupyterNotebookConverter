@@ -1,9 +1,14 @@
 {
-  "publisher": "Connor Walsh",
+  "publisher": "cwalsh-developer",
   "name": "ipynb-converter",
   "displayName": "ipynbConverter",
   "description": "A simple extension that allows you to convert full Python Jupyter Notebook files (including outputs) into docx or pdf documents. ",
   "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cWalsh-developer/JupyterNotebookConverter"
+  },
   "engines": {
     "vscode": "^1.109.0"
   },

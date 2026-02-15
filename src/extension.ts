@@ -107,21 +107,31 @@ async function exportNotebook(
 
     if (execute) renderArgs.push("--execute");
 
+    const metaPath = path.join(outDir, `.ipynbConverter-${format}-meta.yml`);
+
     // Apply reference doc ONLY for DOCX exports using a Quarto metadata-file (reliable)
     if (format === "docx") {
       if (!fs.existsSync(referenceDoc)) {
         throw new Error(`Reference doc not found: ${referenceDoc}`);
       }
 
-      const metaPath = path.join(outDir, ".ipynbConverter-docx-meta.yml");
-
       // YAML + Quarto behave best with forward slashes on Windows
       const refForYaml = referenceDoc.replace(/\\/g, "/");
+
+      // Lua filter to remove gray background from output cells
+      const luaFilter = vscode.Uri.joinPath(
+        context.extensionUri,
+        "resources",
+        "no-tables.lua",
+      ).fsPath;
+      const luaFilterForYaml = luaFilter.replace(/\\/g, "/");
 
       const yaml = `format:
   docx:
     reference-doc: "${refForYaml}"
 highlight-style: none
+filters:
+  - "${luaFilterForYaml}"
 pandoc:
   wrap: auto
 `;
